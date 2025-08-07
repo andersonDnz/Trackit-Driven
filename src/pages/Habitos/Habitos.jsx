@@ -57,7 +57,7 @@ const Habitos = () => {
       .then(() => {
         setNewHabit({ name: "", days: [] });
         setShowForm(false);
-        return getHabits(user.token); // atualiza lista
+        return getHabits(user.token);
       })
       .then((res) => setHabits(res.data))
       .catch(() => alert("Erro ao criar hábito"))

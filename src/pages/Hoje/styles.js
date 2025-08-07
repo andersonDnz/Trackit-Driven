@@ -3,27 +3,35 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-  padding: 20px;
-  font-family: 'Lexend Deca', sans-serif;
+  padding: 90px 18px;
+  background-color: #F2F2F2;
+  min-height: 100vh;
 `;
+
 
 export const Header = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 
   h2 {
-    font-size: 24px;
-    color: #126ba5;
+    font-size: 23px;
+    color: #126BA5;
+    margin-bottom: 5px;
   }
 
-  .gray {
-    color: #bababa;
-  }
+  p {
+    font-size: 18px;
+    color: #BABABA;
 
-  span {
-    color: #8fc549;
-    font-size: 16px;
+    .gray {
+      color: #BABABA;
+    }
+
+    span {
+      color: #8FC549;
+    }
   }
 `;
+
 
 export const HabitsList = styled.div`
   display: flex;

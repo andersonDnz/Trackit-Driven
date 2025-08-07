@@ -16,7 +16,7 @@ import { login } from "../../services/api";
 import { UserContext } from "../../contexts/UserContext";
 
 
-import { Container, Logo, Form } from "./styles";
+import { Container, Logo, Form, TextList } from "./styles";
 
 
 const Login = () => {
@@ -55,6 +55,7 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
           disabled={loading}
           required
+          autoComplete="current-password"
         />
         <input
           type="password"
@@ -63,6 +64,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           disabled={loading}
           required
+          autoComplete="current-password"
         />
         <button type="submit" disabled={loading}>
           {loading ? (
@@ -72,8 +74,12 @@ const Login = () => {
           )}
         </button>
       </Form>
-      <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
-    </Container>
+      <Link to="/cadastro">
+        <TextList>
+          Não tem uma conta? Cadastre-se!
+        </TextList>
+      </Link>
+    </Container >
   );
 };
 

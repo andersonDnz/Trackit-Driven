@@ -7,7 +7,8 @@ import {
   Container,
   Form,
   LoaderWrapper,
-  Logo
+  Logo,
+  TextList
 } from "./styles";
 
 
@@ -53,6 +54,7 @@ const Cadastro = () => {
           onChange={handleChange}
           disabled={loading}
           required
+          autoComplete="current-password"
         />
         <input
           name="password"
@@ -62,6 +64,7 @@ const Cadastro = () => {
           onChange={handleChange}
           disabled={loading}
           required
+          autoComplete="current-password"
         />
         <input
           name="name"
@@ -100,7 +103,11 @@ const Cadastro = () => {
           )}
         </button>
       </Form>
-      <Link to="/">Já tem uma conta? Faça login!</Link>
+      <Link to="/">
+        <TextList>
+          Já tem uma conta? Faça login!
+        </TextList>
+      </Link>
     </Container>
   );
 };

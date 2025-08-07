@@ -35,6 +35,8 @@ export const Form = styled.form`
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
   }
 
   button {
@@ -56,4 +58,9 @@ export const Form = styled.form`
       cursor: not-allowed;
     }
   }
+`;
+export const TextList = styled.p`
+color: #52B6FF;
+margin-top: 10px;
+
 `;
