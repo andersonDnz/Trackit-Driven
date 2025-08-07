@@ -17,6 +17,10 @@ import {
   Header
 } from "./styles";
 
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+
+
 dayjs.locale("pt-br");
 
 const Hoje = () => {
@@ -55,6 +59,7 @@ const Hoje = () => {
 
   return (
     <Container>
+      <Navbar />
       <Header>
         <h2>{today}</h2>
         <p>
@@ -101,6 +106,7 @@ const Hoje = () => {
           </HabitCard>
         ))}
       </HabitsList>
+      <Footer />
     </Container>
   );
 };
