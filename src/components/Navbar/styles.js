@@ -36,6 +36,10 @@ font-weight: 400;
 font-size: 38.98px;
 line-height: 100%;
 letter-spacing: 0%;
-
-
 `
+export const UserImage = styled.img`
+  width: 51px;
+  height: 51px;
+  border-radius: 50%;
+  object-fit: cover;
+`;

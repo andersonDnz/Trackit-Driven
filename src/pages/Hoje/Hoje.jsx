@@ -61,7 +61,7 @@ const Hoje = () => {
 
   return (
     <Container>
-      <Navbar />
+      <Navbar userImage={user?.image} />
       <Header>
         <h2>{today}</h2>
         <p>

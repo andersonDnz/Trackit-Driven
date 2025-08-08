@@ -1,13 +1,10 @@
-import { Container, Tittle } from "../Navbar/styles";
+import { Container, Tittle, UserImage } from "./styles";
 
-export default function Navbar() {
+export default function Navbar({ userImage }) {
   return (
     <Container>
-      <Tittle>
-        TrackIt
-      </Tittle>
-
-      <img src="" alt="Avatar" />
+      <Tittle>TrackIt</Tittle>
+      {userImage && <UserImage src={userImage} alt="Avatar" />}
     </Container>
   );
 }

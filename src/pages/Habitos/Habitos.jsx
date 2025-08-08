@@ -15,9 +15,6 @@ import {
 } from "./styles";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer"
-import styled from "styled-components";
-
-
 
 
 
@@ -102,7 +99,7 @@ const Habitos = () => {
   if (error) {
     return (
       <Container>
-        <Navbar />
+        <Navbar userImage={user?.image} />
         <Header>
           <h2>Meus hábitos</h2>
         </Header>
@@ -114,7 +111,7 @@ const Habitos = () => {
 
   return (
     <Container>
-      <Navbar />
+      <Navbar userImage={user?.image} />
       <Header>
         <h2>Meus hábitos</h2>
         <button onClick={() => setShowForm(!showForm)} disabled={loading}>
