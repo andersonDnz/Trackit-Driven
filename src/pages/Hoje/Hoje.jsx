@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
+
 import {
   getTodayHabits,
   checkHabit,
@@ -13,6 +14,7 @@ import { UserContext } from "../../contexts/UserContext";
 import {
   CheckButton,
   Container,
+  HabitCard,
   HabitsList,
   Header
 } from "./styles";

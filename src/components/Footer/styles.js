@@ -1,22 +1,32 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  height: 70px;
-  width: 100%;
-  background-color: white;
-  font-size: 18px;
-  color: #52B6FF;
+export const FooterContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 10;
+  height: 60px;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+`;
 
-  a {
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
+export const FooterButton = styled.button`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+
+  background-color: ${(props) => (props.selected ? "#52B6FF" : "#fff")};
+  color: ${(props) => (props.selected ? "#fff" : "#B3B3B3")};
+
+  svg {
+    font-size: 18px;
+    color: ${(props) => (props.selected ? "#fff" : "#B3B3B3")};
   }
 `;

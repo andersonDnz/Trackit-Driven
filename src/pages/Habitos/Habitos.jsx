@@ -1,20 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
-
 import {
   getHabits,
   createHabit
 } from "../../services/api";
-
 import { UserContext } from "../../contexts/UserContext";
-
-
 import {
   Actions,
   Container,
   DaysContainer,
   Header,
-  Form
+  Form,
+  DayButton,
+  HabitCard
 } from "./styles";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer"
+import styled from "styled-components";
+
+
+
+
+
 
 const weekDays = [
   { name: "D", number: 0 },
@@ -32,13 +38,25 @@ const Habitos = () => {
   const [showForm, setShowForm] = useState(false);
   const [newHabit, setNewHabit] = useState({ name: "", days: [] });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (user?.token) {
-      getHabits(user.token)
-        .then((res) => setHabits(res.data))
-        .catch((err) => alert("Erro ao carregar hábitos"));
+    if (!user?.token) {
+      setError("User not authenticated");
+      return;
     }
+
+    const fetchHabits = async () => {
+      try {
+        const res = await getHabits(user.token);
+        setHabits(res.data);
+      } catch (err) {
+        setError("Error loading habits");
+        console.error("Error loading habits:", err);
+      }
+    };
+
+    fetchHabits();
   }, [user]);
 
   const toggleDay = (day) => {
@@ -50,25 +68,58 @@ const Habitos = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!newHabit.name.trim()) {
+      setError("Habit name cannot be empty");
+      return;
+    }
+
+    if (newHabit.days.length === 0) {
+      setError("Please select at least one day");
+      return;
+    }
+
     setLoading(true);
-    createHabit(newHabit, user.token)
-      .then(() => {
-        setNewHabit({ name: "", days: [] });
-        setShowForm(false);
-        return getHabits(user.token);
-      })
-      .then((res) => setHabits(res.data))
-      .catch(() => alert("Erro ao criar hábito"))
-      .finally(() => setLoading(false));
+    setError(null);
+
+    try {
+      await createHabit(newHabit, user.token);
+      setNewHabit({ name: "", days: [] });
+      setShowForm(false);
+
+      const res = await getHabits(user.token);
+      setHabits(res.data);
+    } catch (err) {
+      setError("Error creating habit");
+      console.error("Error creating habit:", err);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (error) {
+    return (
+      <Container>
+        <Navbar />
+        <Header>
+          <h2>Meus hábitos</h2>
+        </Header>
+        <p>Error: {error}</p>
+        <Footer />
+      </Container>
+    );
+  }
 
   return (
     <Container>
+      <Navbar />
       <Header>
         <h2>Meus hábitos</h2>
-        <button onClick={() => setShowForm(!showForm)}>+</button>
+        <button onClick={() => setShowForm(!showForm)} disabled={loading}>
+          +
+        </button>
       </Header>
 
       {showForm && (
@@ -96,8 +147,14 @@ const Habitos = () => {
               </DayButton>
             ))}
           </DaysContainer>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <Actions>
-            <span onClick={() => setShowForm(false)}>Cancelar</span>
+            <span onClick={() => {
+              setShowForm(false);
+              setError(null);
+            }} disabled={loading}>
+              Cancelar
+            </span>
             <button type="submit" disabled={loading}>
               {loading ? "Salvando..." : "Salvar"}
             </button>
@@ -126,6 +183,7 @@ const Habitos = () => {
           </HabitCard>
         ))
       )}
+      <Footer />
     </Container>
   );
 };

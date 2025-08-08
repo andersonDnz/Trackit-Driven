@@ -5,15 +5,26 @@ import styled from "styled-components";
 export const Container = styled.div`
   padding: 20px;
   font-family: 'Lexend Deca', sans-serif;
+
+  p {
+    color:#000;
+    font-family: "Lexend Deca";
+    font-weight: 400;
+    font-size: 17.98px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+  }
 `;
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   h2 {
     font-size: 24px;
+    color: #126BA5;
+    ;
   }
 
   button {
