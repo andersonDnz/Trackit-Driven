@@ -3,52 +3,59 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
   padding: 20px;
+  margin-top: 90px; 
   font-family: 'Lexend Deca', sans-serif;
 
   p {
-    color:#000;
-    font-family: "Lexend Deca";
+    color: #666;
     font-weight: 400;
     font-size: 17.98px;
     line-height: 100%;
-    letter-spacing: 0%;
-
   }
 `;
+
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 3px;
+  margin-top: none;
 
   h2 {
     font-size: 24px;
     color: #126BA5;
-    ;
   }
 
   button {
+    display: flex;
+    width: 40;
+    height: 35;
+    top: 92px;
+    left: 317px;
+    border-radius: 4.64px;
+    opacity: 1;
+    align-items: center;
     background-color: #52b6ff;
     border: none;
     color: white;
     font-size: 24px;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
     cursor: pointer;
   }
 `;
 
+
 export const Form = styled.form`
-  margin: 20px 0;
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%; 
+  align-items: flex-start;
 `;
+
 
 export const DaysContainer = styled.div`
   display: flex;
@@ -90,4 +97,12 @@ export const HabitCard = styled.div`
   padding: 16px;
   margin-bottom: 10px;
   border-radius: 5px;
+`;
+
+
+export const EmptyMessage = styled.p`
+  text-align: left;
+  margin-top: 20px;
+  color: #666;
+  font-size: 14px;
 `;

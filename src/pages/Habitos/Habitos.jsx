@@ -11,7 +11,8 @@ import {
   Header,
   Form,
   DayButton,
-  HabitCard
+  HabitCard,
+  EmptyMessage
 } from "./styles";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer"
@@ -160,7 +161,10 @@ const Habitos = () => {
       )}
 
       {habits.length === 0 ? (
-        <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+
+        <EmptyMessage>
+          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+        </EmptyMessage>
       ) : (
         habits.map((habit) => (
           <HabitCard key={habit.id}>
@@ -181,7 +185,7 @@ const Habitos = () => {
         ))
       )}
       <Footer />
-    </Container>
+    </Container >
   );
 };
 

@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Lexend Deca', sans-serif;
     background-color: #F2F2F2;
+    align-items: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -24,14 +25,14 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
   }
 
   #root {
     width: 100%;
     max-width: 500px; 
     padding: 16px;
-  }
+    flex: 1;
+}
 
   button {
     cursor: pointer;
