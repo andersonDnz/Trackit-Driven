@@ -73,7 +73,7 @@ const Login = () => {
 
   return (
     <Container>
-      <Logo src="/assets/logo.png" alt="TrackIt" />
+      <Logo src="/logo.png" alt="TrackIt" />
 
       <Form onSubmit={handleLogin}>
         <input
