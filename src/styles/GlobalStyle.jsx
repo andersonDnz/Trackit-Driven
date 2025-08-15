@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     max-width: 100vw;
+  
 
     display: flex;
     flex-direction: column;

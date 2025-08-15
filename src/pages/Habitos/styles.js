@@ -4,16 +4,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: #f2f2f2;
+  width: 100%;
+  height: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 70px 20px 0 20px; 
+  padding: 70px 10px 0 10px; 
   box-sizing: border-box;
-`;
-
-export const Content = styled.div`
-  flex: 1;
-  padding-bottom: 100px; 
 `;
 
 
@@ -119,13 +116,20 @@ export const Actions = styled.div`
 export const HabitCard = styled.div`
   background-color: white;
   padding: 1px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   border-radius: 5px;
+  flex: 1;
+  padding-bottom: 80px;
+  overflow-y: auto;
   h3 {
     font-size: 20px;
     margin-bottom: 20px;
     color: #666;
   }
+`;
+
+export const Content = styled.div`
+  
 `;
 
 
