@@ -23,6 +23,11 @@ export const Container = styled.div`
     border-radius: 25px;
     object-fit: cover;
   }
+
+  button {
+    margin-right: 20px;
+  }
+  
 `;
 
 export const Tittle = styled.h1`

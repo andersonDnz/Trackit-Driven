@@ -16,19 +16,23 @@ import {
   Container,
   HabitCard,
   HabitsList,
-  Header
+  Header,
+  LoadingDots
 } from "./styles";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 
 
+
 dayjs.locale("pt-br");
 
+
 const Hoje = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(false);
+
 
   const today = dayjs().format("dddd, DD/MM");
 
@@ -59,11 +63,14 @@ const Hoje = () => {
     ? Math.round((doneCount / habits.length) * 100)
     : 0;
 
+
+
   return (
     <Container>
       <Navbar userImage={user?.image} />
       <Header>
         <h2>{today}</h2>
+
         <p>
           {doneCount > 0 ? (
             <span>{progress}% dos hábitos concluídos</span>
@@ -99,15 +106,24 @@ const Hoje = () => {
               </p>
             </div>
             <CheckButton
-              done={habit.done}
+              $done={habit.done}
               disabled={loading}
               onClick={() => toggleHabit(habit)}
             >
-              ✓
+              {loading ? (
+                <LoadingDots>
+                  <div />
+                  <div />
+                  <div />
+                </LoadingDots>
+              ) : (
+                "✓"
+              )}
             </CheckButton>
           </HabitCard>
         ))}
       </HabitsList>
+
       <Footer />
     </Container>
   );

@@ -3,21 +3,49 @@ import React, {
   useContext
 } from "react";
 
-
 import {
   useNavigate,
   Link,
 
 } from "react-router-dom";
 
-import { Oval } from "react-loader-spinner";
 import { login } from "../../services/api";
 
 import { UserContext } from "../../contexts/UserContext";
 
-
 import { Container, Logo, Form, TextList } from "./styles";
+import styled from "styled-components";
 
+const LoadingDots = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  div {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: fade 1.4s infinite ease-in-out both;
+  }
+  div:nth-child(1) {
+    animation-delay: 0s;
+  }
+  div:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  div:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  @keyframes fade {
+    0%, 80%, 100% {
+      opacity: 0.3;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+`;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -68,7 +96,11 @@ const Login = () => {
         />
         <button type="submit" disabled={loading}>
           {loading ? (
-            <Oval color="#52B6FF" height={20} width={20} />
+            <LoadingDots>
+              <div />
+              <div />
+              <div />
+            </LoadingDots>
           ) : (
             "Entrar"
           )}

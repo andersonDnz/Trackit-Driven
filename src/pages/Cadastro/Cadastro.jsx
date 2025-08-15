@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, Link, } from "react-router-dom";
-import { Oval } from "react-loader-spinner";
 import { signUp } from "../../services/api";
 
 import {
@@ -11,8 +10,38 @@ import {
   TextList
 } from "./styles";
 
+import styled from "styled-components";
 
-
+const LoadingDots = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  div {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: fade 1.4s infinite ease-in-out both;
+  }
+  div:nth-child(1) {
+    animation-delay: 0s;
+  }
+  div:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  div:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  @keyframes fade {
+    0%, 80%, 100% {
+      opacity: 0.3;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+`;
 
 const Cadastro = () => {
   const [form, setForm] = useState({
@@ -86,18 +115,11 @@ const Cadastro = () => {
         />
         <button type="submit" disabled={loading}>
           {loading ? (
-            <LoaderWrapper>
-              <Oval
-                height={40}
-                width={40}
-                color="#ffffff"
-                visible={true}
-                ariaLabel="oval-loading"
-                secondaryColor="#cccccc"
-                strokeWidth={2}
-                strokeWidthSecondary={2}
-              />
-            </LoaderWrapper>
+            <LoadingDots>
+              <div />
+              <div />
+              <div />
+            </LoadingDots>
           ) : (
             "Cadastrar"
           )}
