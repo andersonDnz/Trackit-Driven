@@ -12,7 +12,8 @@ import {
   Form,
   DayButton,
   HabitCard,
-  EmptyMessage
+  EmptyMessage,
+  Content
 } from "./styles";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer"
@@ -159,32 +160,33 @@ const Habitos = () => {
           </Actions>
         </Form>
       )}
+      <Content>
+        {habits.length === 0 ? (
 
-      {habits.length === 0 ? (
-
-        <EmptyMessage>
-          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-        </EmptyMessage>
-      ) : (
-        habits.map((habit) => (
-          <HabitCard key={habit.id}>
-            <h3>{habit.name}</h3>
-            <DaysContainer>
-              {weekDays.map((d) => (
-                <DayButton
-                  key={d.number}
-                  type="button"
-                  selected={habit.days.includes(d.number)}
-                  disabled
-                >
-                  {d.name}
-                </DayButton>
-              ))}
-            </DaysContainer>
-          </HabitCard>
-        ))
-      )}
-      <Footer />
+          <EmptyMessage>
+            Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+          </EmptyMessage>
+        ) : (
+          habits.map((habit) => (
+            <HabitCard key={habit.id}>
+              <h3>{habit.name}</h3>
+              <DaysContainer>
+                {weekDays.map((d) => (
+                  <DayButton
+                    key={d.number}
+                    type="button"
+                    selected={habit.days.includes(d.number)}
+                    disabled
+                  >
+                    {d.name}
+                  </DayButton>
+                ))}
+              </DaysContainer>
+            </HabitCard>
+          ))
+        )}
+        <Footer />
+      </Content>
     </Container >
   );
 };

@@ -65,10 +65,14 @@ export const HabitCard = styled.div`
 export const CheckButton = styled.button`
   width: 40px;
   height: 40px;
-  font-size: 24px;
-  color: white;
-  background-color: ${(props) => (props.done ? "#8fc549" : "#ebebeb")};
-  border: 1px solid #ccc;
   border-radius: 5px;
+  border: 1px solid #e7e7e7;
+  background-color: ${(props) => (props.done ? "#8fc549" : "#ebebeb")};
+  color: white;
+  font-size: 24px;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

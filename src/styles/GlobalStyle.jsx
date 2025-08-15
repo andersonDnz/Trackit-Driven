@@ -53,6 +53,30 @@ const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     display: block;
   }
+
+  .app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; 
+  padding: 20px;
+  padding-bottom: 80px; 
+  box-sizing: border-box;
+}
+
+footer {
+  height: 70px;
+  background: white;
+  border-top: 1px solid #ccc;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 `;
 
 export default GlobalStyle;
