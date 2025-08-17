@@ -13,13 +13,9 @@ import {
   DayButton,
   HabitCard,
   EmptyMessage,
-  Content
 } from "./styles";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer"
-
-
-
 
 const weekDays = [
   { name: "D", number: 0 },
@@ -37,11 +33,13 @@ const Habitos = () => {
   const [showForm, setShowForm] = useState(false);
   const [newHabit, setNewHabit] = useState({ name: "", days: [] });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+
+  const [globalError, setGlobalError] = useState(null);
+  const [formError, setFormError] = useState(null);
 
   useEffect(() => {
     if (!user?.token) {
-      setError("User not authenticated");
+      setGlobalError("User not authenticated");
       return;
     }
 
@@ -50,7 +48,7 @@ const Habitos = () => {
         const res = await getHabits(user.token);
         setHabits(res.data);
       } catch (err) {
-        setError("Error loading habits");
+        setGlobalError("Error loading habits");
         console.error("Error loading habits:", err);
       }
     };
@@ -71,17 +69,17 @@ const Habitos = () => {
     e.preventDefault();
 
     if (!newHabit.name.trim()) {
-      setError("Habit name cannot be empty");
+      setFormError("O nome do hábito não pode estar vazio");
       return;
     }
 
     if (newHabit.days.length === 0) {
-      setError("Please select at least one day");
+      setFormError("Selecione pelo menos um dia");
       return;
     }
 
     setLoading(true);
-    setError(null);
+    setFormError(null);
 
     try {
       await createHabit(newHabit, user.token);
@@ -91,21 +89,21 @@ const Habitos = () => {
       const res = await getHabits(user.token);
       setHabits(res.data);
     } catch (err) {
-      setError("Error creating habit");
+      setFormError("Erro ao criar hábito");
       console.error("Error creating habit:", err);
     } finally {
       setLoading(false);
     }
   };
 
-  if (error) {
+  if (globalError) {
     return (
       <Container>
         <Navbar userImage={user?.image} />
         <Header>
           <h2>Meus hábitos</h2>
         </Header>
-        <p>Error: {error}</p>
+        <p style={{ color: 'red' }}>Error: {globalError}</p>
         <Footer />
       </Container>
     );
@@ -146,11 +144,13 @@ const Habitos = () => {
               </DayButton>
             ))}
           </DaysContainer>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+
+          {formError && <p style={{ color: 'red' }}>{formError}</p>}
+
           <Actions>
             <span onClick={() => {
               setShowForm(false);
-              setError(null);
+              setFormError(null);
             }} disabled={loading}>
               Cancelar
             </span>
@@ -162,7 +162,6 @@ const Habitos = () => {
       )}
 
       {habits.length === 0 ? (
-
         <EmptyMessage>
           Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
         </EmptyMessage>
@@ -186,8 +185,7 @@ const Habitos = () => {
         ))
       )}
       <Footer />
-
-    </Container >
+    </Container>
   );
 };
 
